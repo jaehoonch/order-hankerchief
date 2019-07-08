@@ -44,7 +44,7 @@ class App extends React.Component {
                 <img src="//unpkg.com/fiori-fundamentals/dist/images/sap-logo.png" srcset="//unpkg.com/fiori-fundamentals/dist/images/sap-logo@2x.png 1x, //unpkg.com/fiori-fundamentals/dist/images/sap-logo@3x.png 2x, //unpkg.com/fiori-fundamentals/dist/images/sap-logo@4x.png 3x" width="48" height="24" alt="SAP"/>
               </a>
               <strong>
-                Order your Handkerchief
+                '나만의 손수건' 주문
               </strong>
             </div>
           </div>

@@ -109,22 +109,22 @@ class OrderForm extends React.Component {
             <div>
                 <div className="container fd-has-margin-tiny">
                     <img src={image} width="100%"></img>
-                    <div className="centered">Your Text</div>
+                    <div className="centered">손수건 문구</div>
                 </div>
 
                 <form
                     onSubmit={this.props.handleSubmit(this.onSubmit)}
                     className="ui form error">
-                    <Field name="title" component={this.renderComboboxInput} placeholder="Age" />
-                    <Field name="timeline" component={this.renderInput} placeholder="Phone Number" />
-                    <Field name="timeline" component={this.renderInput} placeholder="Nickname" />
+                    <Field name="title" component={this.renderComboboxInput} placeholder="연령대" />
+                    <Field name="timeline" component={this.renderInput} placeholder="전화번호" />
+                    <Field name="timeline" component={this.renderInput} placeholder="닉네임" />
                     <br />
-                    <Field name="description" component={this.renderInput} placeholder="Handkerchief Text" />
-                    <Field name="timeline" component={this.renderComboboxInput} placeholder="Handkerchief Type" />
-                    <Field name="timeline" component={this.renderComboboxInput} placeholder="Text color" />
+                    <Field name="description" component={this.renderInput} placeholder="손수건 문구" />
+                    <Field name="timeline" component={this.renderComboboxInput} placeholder="손수건 색상" />
+                    <Field name="timeline" component={this.renderComboboxInput} placeholder="문구 색상" />
                     {/* <Field name="timeline" component={this.renderInput} label="손수건 미리보기:" /> */}
                     <div align="center">
-                        <button class="button">SUBMIT</button>
+                        <button class="button">제출</button>
                     </div>
                 </form>
             </div>
