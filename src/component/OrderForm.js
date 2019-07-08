@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import './OrderForm.css';
 import image from '../images/handkerchief_sample.PNG';
 
 class OrderForm extends React.Component {
@@ -26,46 +27,6 @@ class OrderForm extends React.Component {
         );
     }
 
-    renderRadioInupt = ({label}) => {
-        return (
-            <fieldset class="fd-form__set">
-                <legend class="fd-form__legend">{label}</legend>
-                <div class="fd-form__group">
-                    <div class="fd-form__item fd-form__item--inline fd-form__item--check">
-                        <label class="fd-form__label" for="pDidh767">
-                            <input type="radio" class="fd-form__control" id="pDidh767" name="radio" checked="checked" />
-                            20s
-                        </label>
-                    </div>
-                    <div class="fd-form__item fd-form__item--inline fd-form__item--check">
-                        <label class="fd-form__label" for="pDidh7618">
-                            <input type="radio" class="fd-form__control" id="pDidh7618" name="radio" />
-                            30s
-                        </label>
-                    </div>
-                    <div class="fd-form__item fd-form__item--inline fd-form__item--check">
-                        <label class="fd-form__label" for="pDidh7619">
-                            <input type="radio" class="fd-form__control" id="pDidh7619" name="radio"/>
-                            40s
-                        </label>
-                    </div>
-                    <div class="fd-form__item fd-form__item--inline fd-form__item--check">
-                        <label class="fd-form__label" for="pDidh7619">
-                            <input type="radio" class="fd-form__control" id="pDidh7619" name="radio"/>
-                            50s
-                        </label>
-                    </div>
-                    <div class="fd-form__item fd-form__item--inline fd-form__item--check">
-                        <label class="fd-form__label" for="pDidh7619">
-                            <input type="radio" class="fd-form__control" id="pDidh7619" name="radio"/>
-                            60s
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-        );
-    }
-
     renderSelectInput = ({label}) => {
         return (
             <div className="fd-form__set">
@@ -81,6 +42,64 @@ class OrderForm extends React.Component {
         );
     }
 
+    renderDropdownInput = ({placeholder}) => {
+        return (
+            <div class="fd-dropdown" width="100%">
+                <div class="fd-popover">
+                    <div class="fd-popover__control">
+                        <button class="fd-dropdown__control fd-button sap-icon--filter "
+                        aria-controls="sXq41189" aria-expanded="false" aria-haspopup="true">
+                        Select
+                        </button>
+                    </div>
+                    <div class="fd-popover__body fd-popover__body--no-arrow"  aria-hidden="true" id="sXq41189">
+                        <nav class="fd-menu">
+                            <ul class="fd-menu__list">
+                            <li><a href="#" class="fd-menu__item">Option 1</a></li>
+                            <li><a href="#" class="fd-menu__item">Option 2</a></li>
+                            <li><a href="#" class="fd-menu__item">Option 3</a></li>
+                            <li><a href="#" class="fd-menu__item">Option 4</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                </div>
+        );
+    }
+
+    renderComboboxInput = ({placeholder}) => {
+        return (
+            <div className="fd-form__set">
+                <div className="fd-combobox-input">
+                    <div className="fd-popover">
+                        <div className="fd-popover__control">
+                            <div className="fd-combobox-control" aria-label="Image label" aria-controls="F4GcX348" aria-expanded="false" aria-haspopup="true">
+                                <div className="fd-input-group fd-input-group--after">
+                                    <input type="text" className="fd-input" id="" placeholder={placeholder} />
+                                    <span className="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button">
+                                        <button className=" fd-button--light sap-icon--navigation-down-arrow"></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="fd-popover__body fd-popover__body--no-arrow" aria-hidden="true" id="F4GcX348">
+                            <nav className="fd-menu">
+                            <ul className="fd-menu__list">
+                                <li><a href="#" className="fd-menu__item">White</a></li>
+                                <li><a href="#" className="fd-menu__item">Black</a></li>
+                                <li><a href="#" className="fd-menu__item">Navy</a></li>
+                                <li><a href="#" className="fd-menu__item fd-menu__link">Gray</a></li>
+                                <li><a href="#" className="fd-menu__item fd-menu__link">Skyblue</a></li>
+                            </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+    }
+
     onSubmit = formValues => {
         this.props.onSubmit(formValues);
     }
@@ -88,23 +107,26 @@ class OrderForm extends React.Component {
     render(){
         return (
             <div>
-                <img src={image} width="100%"></img>
+                <div className="container fd-has-margin-tiny">
+                    <img src={image} width="100%"></img>
+                    <div className="centered">Your Text</div>
+                </div>
+
                 <form
                     onSubmit={this.props.handleSubmit(this.onSubmit)}
                     className="ui form error">
-                    <Field name="title" component={this.renderRadioInupt} placeholder="Age:" />
-                    <Field name="timeline" component={this.renderInput} placeholder="Phone Number :" />
-                    <Field name="timeline" component={this.renderInput} placeholder="Nickname :" />
-                    <Field name="description" component={this.renderInput} placeholder="Handkerchief Text:" />
-                    <Field name="timeline" component={this.renderSelectInput} placeholder="Handkerchief Type :" />
-                    <Field name="timeline" component={this.renderSelectInput} placeholder="Text color :" />
+                    <Field name="title" component={this.renderComboboxInput} placeholder="Age" />
+                    <Field name="timeline" component={this.renderInput} placeholder="Phone Number" />
+                    <Field name="timeline" component={this.renderInput} placeholder="Nickname" />
+                    <br />
+                    <Field name="description" component={this.renderInput} placeholder="Handkerchief Text" />
+                    <Field name="timeline" component={this.renderComboboxInput} placeholder="Handkerchief Type" />
+                    <Field name="timeline" component={this.renderComboboxInput} placeholder="Text color" />
                     {/* <Field name="timeline" component={this.renderInput} label="손수건 미리보기:" /> */}
                     <div align="center">
-                        <button className="fd-button" width="100%">Submit</button>
+                        <button class="button">SUBMIT</button>
                     </div>
-                    <button className="fd-button--emphasized" width="200rem">Submit</button>      
                 </form>
-
             </div>
 
         );

@@ -1,0 +1,29 @@
+.button {
+  background-color: #0A6ED1; /* Green */
+  border: none;
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px; 
+  color: white;
+  padding: 10px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 85%;
+}
+
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  /* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }

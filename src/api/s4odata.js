@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRF-Token'
+
 
 export default axios.create({
     baseURL : 'https://cors-anywhere.herokuapp.com/https://my300183-api.s4hana.ondemand.com',
