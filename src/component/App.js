@@ -42,7 +42,7 @@ class App extends React.Component {
             <img src="//unpkg.com/fiori-fundamentals/dist/images/sap-logo.png" srcset="//unpkg.com/fiori-fundamentals/dist/images/sap-logo@2x.png 1x, //unpkg.com/fiori-fundamentals/dist/images/sap-logo@3x.png 2x, //unpkg.com/fiori-fundamentals/dist/images/sap-logo@4x.png 3x" width="48" height="24" alt="SAP"/>
             </a>
             <strong>
-              Corporate Portal
+              Order your Handkerchief
             </strong>
             
           </div>
@@ -58,7 +58,7 @@ class App extends React.Component {
           </div>
           <div className="fd-shell__footer">
           <div align="right">
-                    <button className="fd-button--emphasized" align="right">제출</button>
+                    <h3>Powered by SAP cloud Platform</h3>
                 </div>
           </div>
       </div>

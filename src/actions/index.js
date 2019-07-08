@@ -8,8 +8,7 @@ import {
 export const createSalesOrder = () => async dispatch => {
     const response = await s4odata.post('/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder', {
         headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': 'B_zfS10N8ER1Gzv3A5Efpw==',
+            'X-CSRF-Token':'Fetch',
             'Content-Type': 'application/json',
             'sap-language': 'EN'
         },
