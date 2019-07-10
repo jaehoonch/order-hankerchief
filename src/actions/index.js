@@ -3,108 +3,92 @@ import {
     CREATE_SALESORDER,
     GET_SALESORDERS
 } from './types';
-import { Cookies } from 'react-cookie';
 
-// export const createSalesOrder = () => async dispatch => {
+import {
+    pendingTask, // The action key for modifying loading state
+    begin, // The action value if a "long" running task begun
+    endAll // The action value if all running tasks must end
+  } from 'react-redux-spinner';
 
-//     const response = await $http({
-//         method: 'GET',
-//         url: 'https://cors-anywhere.herokuapp.com/https://my300183-api.s4hana.ondemand.com/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder',
-//         headers: { 
-//          'x-csrf-token': 'Fetch',
-//          'Authorization': 'Basic <<base64 encoded username:pass>>'
-//         }
-//       }).then(function(response){
-//        $scope.token = response.headers('x-csrf-token');
-//       });
+import history from '../history';
+import {toastr} from 'react-redux-toastr'
+var XMLParser = require('react-xml-parser');
 
-//     dispatch({ type: CREATE_SALESORDER, payload: response.data });
-// };
+// Create Sales Order Action
+export const createSalesOrder = (formValues, isDisabled) => async dispatch => {
 
+    console.log("Create Sales Order");
+    console.log(formValues);
 
-export const createSalesOrder = () => async dispatch => {
-
-    console.log("Get Sales Orders");
-    // var csrfCookie = Cookies.get('XSRF-TOKEN');
-    // console.log(csrfCookie)
-    const response = await s4odata.get(`/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$format=json&$top=1`, {
-        headers: {
-            "X-CSRF-Token":"Fetch"
-        }
-    }).then((response) => {
-         console.log(response.headers['x-csrf-token']);
-
-        const response2 = s4odata.post('/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder', {
-        headers: {
-            'Content-Type': 'application/json',
-            'sap-language': 'EN',
-            'X-Requested-With': 'XMLHttpRequest'
-            // 'X-CSRF-Token': response.headers['x-csrf-token']
-        },
-        body : {
-            "SalesOrderType": "OR",
-            "SalesOrganization": "1710",
-            "DistributionChannel": "10",
-            "OrganizationDivision": "00",
-            "SoldToParty": "17100001",
-            "to_Item": {
-                "results": [
-                    {
-                        "SalesOrderItem": "10",
-                        "Material": "TG13",
-                        "RequestedQuantity": "1"
-                    }
-                ]
-            }
-            
-        }
-    });
-
-
-    });
-    // const response = await s4odata.get('https://cors-anywhere.herokuapp.com/http://services.odata.org/V4/TripPinService/People');
+    console.log(isDisabled.set)
 
     
 
-    dispatch({ type: CREATE_SALESORDER, payload: response.data });
-};
+    dispatch({
+        type: 'ANY_OF_YOUR_ACTION_TYPES_FINISH',
+        [ pendingTask ]: begin // Make sure you embrace `pendingTask` in brackets [] to evaluate it
+        // Any additional key/values may be included here
+      });
 
-// export const createSalesOrder = () => async dispatch => {
-//     s4odata.defaults.xsrfCookieName = 'csrftoken';
-//     s4odata.defaults.xsrfHeaderName = 'X-CSRFToken';
+    //   document.getElementById("submitButton").setAttribute("disabled","disabled");
+    document.getElementById("submitButton").disabled = true;
 
-//     const response = await s4odata.post('/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder', {
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'sap-language': 'EN'
-//         },
-//         body : {
-//             "SalesOrderType": "OR",
-//             "SalesOrganization": "1710",
-//             "DistributionChannel": "10",
-//             "OrganizationDivision": "00",
-//             "SoldToParty": "17100001",
-//             "to_Item": {
-//                 "results": [
-//                     {
-//                         "SalesOrderItem": "10",
-//                         "Material": "TG13",
-//                         "RequestedQuantity": "1"
-//                     }
-//                 ]
-//             }
+    const response = await s4odata.post("https://handkerchiefsalesorder.cfapps.jp10.hana.ondemand.com/postSalesOrder", formValues,
+        {
+            headers: {"Content-Type": "application/json"}
+        }
+    ).then((res) => {
+
+        dispatch({
+            type: 'ANY_OF_YOUR_ACTION_TYPES_FINISH',
+            [ pendingTask ]: endAll // Bracket [] embrace, remember?
+            // Any additional key/values may be included here
+          });
+        // console.log(res);
+
+        
+        var xml = new XMLParser().parseFromString(res.data.soPostResult);
+        // console.log(xml.children[1].value);
+
+
+        // console.log(xml.getElementsByTagName('Name'));
+
+        if(res.data.resultStatus === 200 || res.data.resultStatus === 201){
+            console.log("Successful");
+            // console.log(formValues.PurchaseOrderByCustomer);
+
+            history.push('/submitted');
+        }else if (res.data.resultStatus === 400) {
+
+            document.getElementById("submitButton").disabled = false;
+            if(xml.children[1].value){
+                toastr.error(xml.children[1].value);
+            }else{
+                toastr.error('주문 오류', '주문 접수가 되지 않았습니다.');
+            }
+            console.log("Error");
+        }else{
             
-//         }
-//     });
-
-//     dispatch({ type: CREATE_SALESORDER, payload: response.data });
-// };
-
-
+            document.getElementById("submitButton").disabled = false;
+            toastr.error('주문 오류', '주문 접수가 되지 않았습니다.');
+            console.log("Unknown Error");
+        }
+        
+        dispatch({ type: CREATE_SALESORDER, payload: res.data });
+    })
+};
 export const getSalesOrder = () => async dispatch => {
 
     console.log("Get Sales Orders");
-    const response = await s4odata.get(`/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$format=json&$top=10`);
+    const response = await s4odata.get(`/sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder?$format=json&$top=1`, {
+        headers: {
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Methods" : "GET, POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+        }, 
+        withCredentials: true
+    });
     // const response = await s4odata.get('https://cors-anywhere.herokuapp.com/http://services.odata.org/V4/TripPinService/People');
 
     console.log(response);

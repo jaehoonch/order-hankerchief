@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
+import ReduxToastr from 'react-redux-toastr'
+
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
+
+import 'redux-notifications/lib/styles.css';
 
 import App from './component/App';
 import reducers from './reducers';
@@ -15,7 +21,18 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <I18nextProvider i18n={i18n}>
+            <App />
+            <ReduxToastr
+                timeOut={6000}
+                newestOnTop={false}
+                preventDuplicates
+                position="top-center"
+                transitionIn="fadeIn"
+                transitionOut="fadeOut"
+                progressBar
+                closeOnToastrClick/>
+        </I18nextProvider>
     </Provider>,
     document.querySelector('#root')
 );

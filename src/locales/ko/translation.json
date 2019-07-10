@@ -1,0 +1,30 @@
+{
+  "title": "'나만의 손수건' 주문",
+  "phonePlaceholder": "전화번호 : (-) 없이 입력 / e.g. 010xxxxxxxx",
+  "nicknamePlaceholder": "닉네임 : 한글 10자 / 영문 15자",
+  "agePlaceholder": "연령대",
+  "textPlaceholder": "손수건 문구 : 한글 10자 / 영문 15자",
+  "colorPlaceholder": "손수건 색상",
+  "textcolorPlaceholder": "문구 색상",
+
+  "20s": "20대",
+  "30s": "30대",
+  "40s": "40대",
+  "50s": "50대",
+  "60s": "60대",
+
+  "previewHandkerchief": "'나만의 손수건' 미리보기",
+  "submit": "제출",
+
+  "phoneEmptyError": "전화번호를 입력해주세요",
+  "nicknameEmptyError": "닉네임을 입력해주세요",
+  "ageEmptyError": "연령대를 선택해주세요",
+  "textEmptyError": "손수건에 적힐 문구를 입력해주세요",
+  "colorEmptyError": "손수건의 색상을 선택해주세요",
+  "textcolorEmptyError": "손수건의 문구 색상을 선택해주세요",
+
+  "phoneFormatError": "010xxxxxxxx : 11자리 번호를 입력해주세요",
+  "nicknameLengthError": "최대 한글 10자 / 영문 15자",
+  "textLengthError": "최대 한글 10자 / 영문 15자"
+
+}

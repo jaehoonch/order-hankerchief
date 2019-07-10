@@ -1,2 +1,6 @@
 applications:
 - name: order-hankerchief
+
+services:
+- destination-demo-lite
+- connectivity-demo-lite
