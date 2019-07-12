@@ -1,9 +1,9 @@
 {
   "title": "My Personalized Handkerchief",
   "phonePlaceholder": "Phone : Without (-) / e.g. 010xxxxxxxx",
-  "nicknamePlaceholder": "Nickname : Korean 10/Alphabet 15 letters",
+  "nicknamePlaceholder": "Nickname : Korean 5/Alphabet 10 letters (No Chinese Character)",
   "agePlaceholder": "Age",
-  "textPlaceholder": "Displayed Text : Korean 10/Alphabet 15 letters",
+  "textPlaceholder": "Displayed Text : Korean 5/Alphabet 10 letters (No Chinese Character)",
   "colorPlaceholder": "Handkerchief Color",
   "textcolorPlaceholder": "Text Color",
 
@@ -24,6 +24,6 @@
   "textcolorEmptyError": "Select handkerchief text color",
 
   "phoneFormatError": "010xxxxxxxx : Enter 11 digit number",
-  "nicknameLengthError": "Max Korean 10 / Alphabet 15 letters",
-  "textLengthError": "Max Korean 10 / Alphabet 15 letters"
+  "nicknameLengthError": "Max Korean 5 / Alphabet 10 letters (No Chinese Character)",
+  "textLengthError": "Max Korean 5 / Alphabet 10 letters (No Chinese Character)"
 }

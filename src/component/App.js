@@ -6,6 +6,7 @@ import {
 } from 'react-redux-spinner';
 
 import OrderCreate from './OrderCreate';
+import OrderFinished from './OrderFinished';
 import OrderSubmitted from './OrderSubmitted';
 import history from '../history';
 

@@ -1,9 +1,9 @@
 {
   "title": "'나만의 손수건' 주문",
   "phonePlaceholder": "전화번호 : (-) 없이 입력 / e.g. 010xxxxxxxx",
-  "nicknamePlaceholder": "닉네임 : 한글 10자 / 영문 15자",
+  "nicknamePlaceholder": "닉네임 : 한글 5자 / 영문 10자 (한문 불가)",
   "agePlaceholder": "연령대",
-  "textPlaceholder": "손수건 문구 : 한글 10자 / 영문 15자",
+  "textPlaceholder": "손수건 문구 : 한글 5자 / 영문 10자 (한문 불가)",
   "colorPlaceholder": "손수건 색상",
   "textcolorPlaceholder": "문구 색상",
 
@@ -24,7 +24,7 @@
   "textcolorEmptyError": "손수건의 문구 색상을 선택해주세요",
 
   "phoneFormatError": "010xxxxxxxx : 11자리 번호를 입력해주세요",
-  "nicknameLengthError": "최대 한글 10자 / 영문 15자",
-  "textLengthError": "최대 한글 10자 / 영문 15자"
+  "nicknameLengthError": "최대 한글 5자 / 영문 10자 (한문 불가)",
+  "textLengthError": "최대 한글 5자 / 영문 10자 (한문 불가)"
 
 }

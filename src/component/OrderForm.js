@@ -64,13 +64,26 @@ class OrderForm extends React.Component {
             <div className="fd-form__set">
                 <div className="fd-form__item">
                     {/* <label className="fd-form__label" for="input-1">{label}</label> */}
-                     <input {...input} autoComplete="off" className="fd-form__control" type="text" id="input-1" placeholder={placeholder}/>
+                     <input {...input} autoComplete="off" className="fd-form__control" type="text" id="input-1" placeholder={placeholder} disabled/>
                      {this.renderError(meta)}
                 </div>
             </div>
         );
     }
 
+    renderInput2 = ({ input, placeholder, meta }) => {
+        const className = `field ${meta.error && meta.touched ? 'error': '' }`;
+        
+        return (
+            <div className="fd-form__set">
+                <div className="fd-form__item">
+                    {/* <label className="fd-form__label" for="input-1">{label}</label> */}
+                     <input {...input} autoComplete="off" className="fd-form__control" type="text" id="input-1" placeholder={placeholder} disabled/>
+                     {this.renderError(meta)}
+                </div>
+            </div>
+        );
+    }
     onSubmit = formValues => {
 
         // validate text
@@ -78,9 +91,9 @@ class OrderForm extends React.Component {
         console.log(this.props)
         console.log("On Submit");
         console.log(formValues);
-        var newFormValues = {'YY1_Age_SDH': formValues['age'], 'YY1_Words_SDH': formValues['text'],
+        var newFormValues = {'YY1_Age_SDH': formValues['age'], 'YY1_Words_SDH': '',
                             'PurchaseOrderByCustomer': formValues['phone'], 'YY1_NickName_SDH': formValues['nickname'],
-                            'Material': TYPE_HANDKERCHIEF[COLOR_HANDKERCHIEF[formValues['color']]][FONT_HANDKERCHIEF[formValues['textcolor']]]};
+                            'Material': TYPE_HANDKERCHIEF[COLOR_HANDKERCHIEF[formValues['color']]][0]};
         console.log(newFormValues);
         // console.log(...formValues['age', 'color', 'nickname', 'phone'], material: TYPE_HANDKERCHIEF[COLOR_HANDKERCHIEF['Navy Dot']][FONT_HANDKERCHIEF['Skyblue']])
         this.props.onSubmit(newFormValues, this.state.isDisabled);
@@ -96,7 +109,7 @@ class OrderForm extends React.Component {
                     <Field name="nickname" component={this.renderInput} placeholder={i18n.t('nicknamePlaceholder')} />
                     <div className="fd-form__set">
                         <div className="fd-form__item">
-                            <Field name="age" component="select" placeholder={i18n.t('agePlaceholder')}>
+                            <Field name="age" component="select" placeholder={i18n.t('agePlaceholder')} disabled>
                                     <option value="" hidden>{i18n.t('agePlaceholder')}</option>
                                     <option value="20">{i18n.t('20s')}</option>
                                     <option value="30">{i18n.t('30s')}</option>
@@ -107,10 +120,10 @@ class OrderForm extends React.Component {
                         </div>
                     </div>
                     
-                    <Field name="text" component={this.renderInput} placeholder={i18n.t('textPlaceholder')} />
+                    <Field name="text" component={this.renderInput2} placeholder={i18n.t('textPlaceholder')} disabled />
                     <div className="fd-form__set">
                         <div className="fd-form__item">
-                            <Field name="color" component="select" placeholder={i18n.t('colorPlaceholder')}>
+                            <Field name="color" component="select" placeholder={i18n.t('colorPlaceholder')} disabled>
                                     <option value="" hidden>{i18n.t('colorPlaceholder')}</option>
                                     <option value="Navy Dot">Navy Dot</option>
                                     <option value="Navy Check">Navy Check</option>
@@ -122,7 +135,7 @@ class OrderForm extends React.Component {
                     </div>
                     <div className="fd-form__set">
                         <div className="fd-form__item">
-                            <Field name="textcolor" component="select" placeholder={i18n.t('textcolorPlaceholder')}>
+                            <Field name="textcolor" component="select" placeholder={i18n.t('textcolorPlaceholder')} disabled>
                                     <option value="" hidden>{i18n.t('textcolorPlaceholder')}</option>
                                     <option value="White">White</option>
                                     <option value="Black">Black</option>
@@ -141,7 +154,7 @@ class OrderForm extends React.Component {
                         <h3 className="centered" style={this.getColor()}>{this.props.handkerchiefText}</h3>
                     </div>
                     <div align="center">
-                        <button id="submitButton" type="submit" className="button"  >{i18n.t('submit')}</button>
+                        <button id="submitButton" type="submit" className="button" disabled >{i18n.t('submit')}</button>
                     </div>
                     
                 </form>
@@ -188,19 +201,19 @@ const validate = (formValues) => {
     // ? 'Invalid phone number, must be 10 digits'
     // : undefined)
 
-    if(!formValues.text){
-        // only ran if the user did not enter a description
-        errors.text = i18n.t('textEmptyError');
-    }
+    // if(!formValues.text){
+    //     // only ran if the user did not enter a description
+    //     errors.text = i18n.t('textEmptyError');
+    // }
     
     if(!formValues.color){
         // only ran if the user did not enter a description
         errors.color = i18n.t('colorEmptyError');
     }
-    if(!formValues.textcolor){
-        // only ran if the user did not enter a description
-        errors.textcolor = i18n.t('textcolorEmptyError');
-    }
+    // if(!formValues.textcolor){
+    //     // only ran if the user did not enter a description
+    //     errors.textcolor = i18n.t('textcolorEmptyError');
+    // }
     return errors;
 };
 
