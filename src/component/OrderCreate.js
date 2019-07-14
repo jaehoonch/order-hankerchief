@@ -17,9 +17,9 @@ class OrderCreate extends React.Component{
     render(){
         return (
             <div>
-                <div class="fd-alert fd-alert--warning fd-alert--dismissible fd-has-margin-tiny" role="alert" id="fwYq4606">
+                {/* <div class="fd-alert fd-alert--warning fd-alert--dismissible fd-has-margin-tiny" role="alert" id="fwYq4606">
                 여러분의 선원에 힘입어 오늘 주문은 마감되었습니다.
-                </div>
+                </div> */}
                 {/* <div class="fd-spinner" aria-hidden="false" aria-label="Loading">
                     <div></div>
                 </div> */}
