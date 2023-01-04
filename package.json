@@ -23,7 +23,7 @@
     "react-scripts": "3.0.1",
     "react-toasts": "^3.0.3",
     "react-widgets": "^4.4.11",
-    "react-xml-parser": "^1.1.2",
+    "react-xml-parser": "^1.1.8",
     "redux": "^4.0.1",
     "redux-form": "^8.2.4",
     "redux-notifications": "^4.0.1",
